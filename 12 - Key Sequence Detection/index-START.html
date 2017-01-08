@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Key Detection</title>
-  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+	<meta charset="UTF-8">
+	<title>Key Detection</title>
+	<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+
+<style>
+
+.blank {
+	position: absolute;
+	left: calc(50% - 50px);
+	top: calc(50% - 50px);
+	width: 100px;
+	height: 100px;
+	border-radius: 20px;
+	background-color: white;
+}
+
+.access {
+	background-color: black;
+}
+
+</style>
+
+<div id='box'class='blank'> </div>
+
 <script>
+const pressed = [];
+const secretCode = 'login heathcliff';
+const box = document.querySelector('#box');
+
+window.addEventListener('keyup', (e) => {
+	pressed.push(e.key);
+	pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+	if (pressed.join('').includes(secretCode)) {
+		box.classList.add('access');
+	}
+});
+
 </script>
 </body>
 </html>
